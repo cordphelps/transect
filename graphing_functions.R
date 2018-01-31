@@ -5,21 +5,19 @@ bugGG <- function (df, x, y, dataPoints, title, legend) {
   # http://t-redactyl.io/blog/2016/02/creating-plots-in-r-using-ggplot2-part-6-weighted-scatterplots.html
   ggplotObject <- ggplot(df, aes(x, y, size=dataPoints)) +
     geom_point(shape=21, colour = "purple", fill = "plum", alpha=0.6) +
-    # geom_rect(data=df, mapping=aes(xmin=-5, xmax=0, ymin=0, ymax=10, fill="orange"), color=FALSE, alpha=0.5) +
-    #geom_rect(aes(xmin=-5, xmax=0, ymin=0,ymax=10), alpha=0.2, fill="red") +
+    #scale_size_area(max_size = 20) +
+    # geom_count() probably more appropriate http://ggplot2.tidyverse.org/reference/scale_size.html
+    scale_size(range = c(1, 10)) +
+    scale_fill_continuous(low = "plum1", high = "purple4") +
     annotate("rect", xmin=-5, xmax=0, ymin=0,ymax=10, alpha=0.2, fill="red") +
     annotate("rect", xmin=0, xmax=15, ymin=0,ymax=10, alpha=0.2, fill="green") +
     scale_y_continuous(breaks = seq(1, 10, 2)) +
     ggtitle(title) +
     labs(x = "border offset", y = "transect") +
-    #scale_size_area(max_size = 20) +
-    scale_size(range = c(1, 10)) +
-    scale_fill_continuous(low = "plum1", high = "purple4") + 
     theme_bw() +
     theme() + 
     # theme(legend.position = "bottom", legend.direction = "horizontal") +
     theme(legend.position = "none", legend.direction = "horizontal") +
-    # labs(size = {in the case of multiple varibles}) +
     theme(legend.box = "horizontal", legend.key.size = unit(1, "cm")) 
   
   return(ggplotObject)
