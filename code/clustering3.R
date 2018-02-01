@@ -82,7 +82,13 @@ longText <- makeGgplotTextObject(matrixToText(speciesMatrix), rotate=TRUE )
 multiplot(heatmapSpearman, heatmapPearson, plotText, longText, plotlist=NULL, cols=2, layout=NULL)
 
 
+# ***********************************************************************
+# dissimilarity, ordination, ....
+# http://ordination.okstate.edu/overview.htm
+# ***********************************************************************
 
+
+# ***********************************************************************
 # Q-mode dissimilarity and distance measures for (semi-)quantitative data
 # Numerical Ecology with R : chapter 3
 # ***********************************************************************
@@ -101,6 +107,13 @@ dev.new(title="Percentage difference (Bray-Curtis), raw data", width=10, height=
 coldiss2(speciesMatrix.db, "\n(Bray-Curtis)", byrank=FALSE, diag=TRUE)
 
 
+# ***********************************************************************
+# giving NMDS ordination a shot with ggplot....
+# (rank order correlation via Nonmetric Multidimensional Scaling )
+# https://oliviarata.wordpress.com/2014/04/17/ordinations-in-ggplot2/
+# ***********************************************************************
+
+# see ordinationNMDS.R
 
 
 
