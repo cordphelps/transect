@@ -18,7 +18,9 @@ matrixToText <- function(matrix) {
 		} else {
 			# https://stackoverflow.com/questions/33047601/paste-collapse-with-tabs
 			# https://gist.github.com/briandk/d9231ba1e2603eed0df1
-			colNameString <- paste(c(colNameString, toString(columnNameArray[j])), collapse = "\t")
+			colNameString <- paste(c(colNameString, toString(columnNameArray[j])), collapse = ">   <")
+			# table don't work, see below
+			# colNameString <- paste(c(colNameString, toString(columnNameArray[j])), collapse = "\t")
 		}
 
 	} 
@@ -60,7 +62,8 @@ readRow <- function(matrix, rowNumber, numberColumns) {
 			string <- strtrim(toString(matrix[rowNumber,i], width = NULL), 7) # avoid inserting a leading tab
 
 		} else {
-			string <- paste(string, "\t", strtrim(toString(matrix[rowNumber,i], width = NULL), 7), sep="", collapse = NULL)
+			# string <- paste(string, "\t", strtrim(toString(matrix[rowNumber,i], width = NULL), 7), sep="", collapse = NULL)
+			string <- paste(string, ">  <", strtrim(toString(matrix[rowNumber,i], width = NULL), 7), sep="", collapse = NULL)
 		}
 	}
 

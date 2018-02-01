@@ -77,6 +77,7 @@ plotText <- makeGgplotTextObject( paste(
 		"non-missing elements, using midranks for ties.\n(> ?rcorr)"), rotate=FALSE )
 
 longText <- makeGgplotTextObject(matrixToText(speciesMatrix), rotate=TRUE )
+# ( another approach: https://magesblog.com/post/2015-04-14-plotting-tables-alsongside-charts-in-r/ )
 
 multiplot(heatmapSpearman, heatmapPearson, plotText, longText, plotlist=NULL, cols=2, layout=NULL)
 
