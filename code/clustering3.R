@@ -57,7 +57,7 @@ speciesMatrix <- subset(speciesMatrix, select = c(aphids, mealybugs, ants, moths
 # a bivariate normal distribution.
 
 # Correlation matrix list with significance levels (coefficients matrix plus p-value matrix)
-# ?rcorr
+# > ?rcorr
 # .... Spearman correlations are the Pearson linear correlations computed on the ranks of 
 # non-missing elements, using midranks for ties.
 library("Hmisc")
@@ -72,7 +72,13 @@ coef <- matrix.list$r
 pvals <- matrix.list$P
 heatmapPearson <- makeHeatmap(coef, "Pearson")
 
-multiplot(heatmapSpearman, heatmapPearson, plotlist=NULL, cols=2, layout=NULL)
+plotText <- makeGgplotTextObject( paste( 
+		".... Spearman correlations are the Pearson\nlinear correlations computed on the ranks of\n", 
+		"non-missing elements, using midranks for ties.\n(> ?rcorr)") )
+
+
+multiplot(heatmapSpearman, heatmapPearson, plotText, plotlist=NULL, cols=2, layout=NULL)
+
 
 
 # Q-mode dissimilarity and distance measures for (semi-)quantitative data

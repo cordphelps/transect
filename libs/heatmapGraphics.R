@@ -44,6 +44,47 @@ makeHeatmap <- function (data, type) {
 }
 
 
+# write some text on a ggplot palette
+makeGgplotTextObject <- function (incomingText) {
+  
+  library(ggplot2)
+  
+  if (nchar(incomingText == 0)) {
+    text <- "incoming text was 0 length......"
+  } else {
+    # future: control the number of characters per line
+  }
+  
+  ggplotObject <- ggplot(data = NULL, aes()) +
+
+    geom_tile(color = "gray78") +
+
+    xlim(0,10) +
+    ylim(0,10) +
+
+    # https://community.rstudio.com/t/why-is-geom-text-size-in-mm/3587
+    # "size=3" seems to accomodate 50 characters in a 2 colmn layout
+    geom_text(aes(fontface=3, label=incomingText, x=0, y=9), size=3, hjust = "inward") +  # italic
+
+
+    theme_bw() + 
+    theme(
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      axis.text.x = element_blank(),
+      axis.text.y = element_blank(),      
+      panel.grid.major = element_blank(),
+      panel.border = element_blank(),
+      panel.background = element_blank(),
+      axis.ticks = element_blank(),
+      legend.position="none") +
+      
+    coord_fixed()
+  
+  return(ggplotObject)
+}
+
+
 # Get lower triangle of the correlation matrix
 get_lower_triangle <- function(cormat){
   cormat[upper.tri(cormat)] <- NA
