@@ -74,10 +74,11 @@ heatmapPearson <- makeHeatmap(coef, "Pearson")
 
 plotText <- makeGgplotTextObject( paste( 
 		".... Spearman correlations are the Pearson\nlinear correlations computed on the ranks of\n", 
-		"non-missing elements, using midranks for ties.\n(> ?rcorr)") )
+		"non-missing elements, using midranks for ties.\n(> ?rcorr)"), rotate=FALSE )
 
+longText <- makeGgplotTextObject(matrixToText(speciesMatrix), rotate=TRUE )
 
-multiplot(heatmapSpearman, heatmapPearson, plotText, plotlist=NULL, cols=2, layout=NULL)
+multiplot(heatmapSpearman, heatmapPearson, plotText, longText, plotlist=NULL, cols=2, layout=NULL)
 
 
 

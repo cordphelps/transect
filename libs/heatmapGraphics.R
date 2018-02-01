@@ -45,7 +45,7 @@ makeHeatmap <- function (data, type) {
 
 
 # write some text on a ggplot palette
-makeGgplotTextObject <- function (incomingText) {
+makeGgplotTextObject <- function (incomingText, rotate) {
   
   library(ggplot2)
   
@@ -53,6 +53,17 @@ makeGgplotTextObject <- function (incomingText) {
     text <- "incoming text was 0 length......"
   } else {
     # future: control the number of characters per line
+  }
+
+  textAngle = 0
+
+  if (rotate == TRUE) {
+    textAngle = 90
+    posX = 5     # seems center justification is the default 
+    posY = 0
+  } else {
+    posX = 0
+    posY = 9
   }
   
   ggplotObject <- ggplot(data = NULL, aes()) +
@@ -64,8 +75,8 @@ makeGgplotTextObject <- function (incomingText) {
 
     # https://community.rstudio.com/t/why-is-geom-text-size-in-mm/3587
     # "size=3" seems to accomodate 50 characters in a 2 colmn layout
-    geom_text(aes(fontface=3, label=incomingText, x=0, y=9), size=3, hjust = "inward") +  # italic
-
+    #geom_text(aes(fontface=3, label=incomingText, x=posX, y=posY, angle = textAngle), size=3, hjust = "inward") +  # italic
+    geom_text(aes(fontface=3, label=incomingText, x=posX, y=posY, angle = textAngle), size=3, hjust = 0) +
 
     theme_bw() + 
     theme(
