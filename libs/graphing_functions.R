@@ -1,4 +1,26 @@
-
+linearFieldLayout <- function(vectorX, vectorY, alpha, color) {
+  
+  # New graphic window 
+  dev.new(title= alpha[1])
+  # Create an empty frame (proportional axes 1:1, with titles)
+  # Geographic coordinates x and y from the spa data frame
+  plot(vectorX, vectorY, asp=NA, type="n", main=alpha[1], xlab=alpha[2], ylab=alpha[3])
+  # Add a blue line connecting the sites (Doubs river)
+  lines(vectorX, vectorY, col=color[1])
+  
+  # create a vertical line separating the edge from the vineyard
+  yAxisPoints <- seq.int(1, nrow(spatial.df) , 1)
+  lines(rep.int(0, length(yAxisPoints)), yAxisPoints, col=color[2])
+  
+  # Add site labels
+  text(spatial.df$X, spatial.df$Y, row.names(spatial.df), cex=0.8, col=color[3])
+  # Add text blocks 
+  text(-3, 4, "margin", cex=1.2, col=color[3])
+  text(10, 6, "vineyard\ninterior", cex=1.2, col=color[3])
+  
+  
+  
+}
 
 bugGG <- function (df, x, y, dataPoints, title, legend) {
   
@@ -46,6 +68,9 @@ bugPlot <- function (df.element, spatialDF, plotTitle) {
 # multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 multiplot <- function(..., plotlist=NULL, cols=1, layout=NULL) {
   library(grid)
+  
+  # New graphic window 
+  dev.new(title= "multiplot")
   
   # Make a list from the ... arguments and plotlist
   plots <- c(list(...), plotlist)

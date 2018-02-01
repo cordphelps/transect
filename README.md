@@ -7,11 +7,11 @@ read data with R:
 
 ```R
 	> library(RCurl)
-	> source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/hvb.csv")
+	> source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb.csv")
 ```
 
 
-[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/quad.jpg)]()
+[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/quad.jpg)]()
 
 
 ### License
