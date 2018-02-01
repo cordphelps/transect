@@ -6,6 +6,10 @@ nmdsInitialize <- function(incomingMatrix, dune.env) {
 	# https://stackoverflow.com/questions/6819804/how-to-convert-a-matrix-to-a-list-of-column-vectors-in-r
 	# new.list <- lapply(seq_len(ncol(speciesMatrix)), function(i) speciesMatrix[[,i]])
 
+	# source.csv <- c("/Users/rcphelps/code/githubPublic/transect/data/vineyard.csv")
+    # vineyard.df <- read.csv(file=source.csv, header=TRUE, row.names=1)
+    # dune.env <- vineyard.df
+
 # https://oliviarata.wordpress.com/2014/04/17/ordinations-in-ggplot2/
 
 	# params
