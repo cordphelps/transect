@@ -16,6 +16,7 @@ library(FD)
 
 setwd("/Users/rcphelps/code/githubPublic/transect")
 source("/Users/rcphelps/code/githubPublic/transect/libs/heatmapGraphics.R")
+source("/Users/rcphelps/code/githubPublic/transect/libs/graphing_functions.R")
 source("/Users/rcphelps/code/githubPublic/transect/libs/numericalEcologyWithR/coldiss-mod.R")
 source("/Users/rcphelps/code/githubPublic/transect/libs/numericalEcologyWithR/panelutils.R")
 
