@@ -74,6 +74,7 @@ nmdsDataSplit <- function(source.url) {
 # individual observations contain transect observations which includes 
 # observation, X, Y, species, and environmental data
 #
+library(RCurl)
 big.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
 #
 # step 1: read species columns and create separate dataframes
@@ -91,15 +92,16 @@ dfMoths.df <- as.data.frame(matrixMoths)
 
 dfSpecies.df <- data.frame(dfAphids.df, dfMealybugs.df, dfAnts.df, dfMoths.df)
 
-matrixEv1 <- subset(matrixBig, select = c(ev1))
+matrixManagement <- subset(matrixBig, select = c(Management))
 matrixEv2 <- subset(matrixBig, select = c(ev2))
 matrixEv3 <- subset(matrixBig, select = c(ev3))	
 
-dfEv1.df <- as.data.frame(matrixEv1)
+library("dplyr")
+dfManagement.df <- select(big.df, Management)
 dfEv2.df <- as.data.frame(matrixEv2)
 dfEv3.df <- as.data.frame(matrixEv3)
 
-dfEv.df <- data.frame(dfEv1.df, dfEv2.df, dfEv3.df)
+dfEv.df <- data.frame(dfManagement.df, dfEv2.df, dfEv3.df)
 
 
 return(list(species=dfSpecies.df, env=dfEv.df))
@@ -110,9 +112,17 @@ return(list(species=dfSpecies.df, env=dfEv.df))
 
 nmdsInitialize <- function(species, env) {
 
+require(vegan)
+require(ggplot2)
+require(grid) #this is only required for the envfit arrows. I've spent many a happy few minutes questioning what on earth the arrowhead error was coming up for when coming back to scripts. Solved by calling grid everytime!
+ 
 #data
 #data(dune)
 #data(dune.env)  
+
+# debug
+# http://seananderson.ca/2013/08/23/debugging-r.html
+#browser()
 
 dune <- species
 dune.env <- env
@@ -175,12 +185,17 @@ NMDS.mean=aggregate(dune.NMDS.data[,c("NMDS1", "NMDS2")],
                     list(group = dune.NMDS.data$Management), mean)
  
 
-nmdsGraphics(dune.NMDS.data, NMDS1, NMDS2, NMDS.mean, env.scores.dune)
+nmdsGraphics(dune.NMDS.data, "NMDS1", "NMDS2", NMDS.mean, env.scores.dune, df_ell.dune.management)
 
 }
 
 
-nmdsGraphics <- function(dune.NMDS.data, NMDS1, NMDS2, NMDS.mean, env.scores.dune) {
+nmdsGraphics <- function(dune.NMDS.data, NMDS1, NMDS2, NMDS.mean, env.scores.dune, df_ell.dune.management) {
+
+require(vegan)
+require(ggplot2)
+require(grid) #this is only required for the envfit arrows. I've spent many a happy few minutes questioning what on earth the arrowhead error was coming up for when coming back to scripts. Solved by calling grid everytime!
+ 
 
 # https://oliviarata.wordpress.com/2014/04/17/ordinations-in-ggplot2/
 
