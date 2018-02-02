@@ -5,10 +5,10 @@
 library(ggplot2)
 library(grid) # ggplot legend adjustment
 
-source("/Users/rcphelps/code/githubPublic/transect/graphing_functions.R")
+source("/Users/rcphelps/code/githubPublic/transect/code/graphing_functions.R")
 
 library(RCurl)
-source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/hvb.csv")
+source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb.csv")
 vineyard.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
 spatial.df <- read.csv(text=getURLContent(source.url), header=TRUE)
 
@@ -19,22 +19,12 @@ spatial.df <- read.csv(text=getURLContent(source.url), header=TRUE)
 # Minimum and maximum of abundance values in the whole data set
 # range(vineyard.df)  # only defined on a data frame with all numeric variables
 # Count cases for each abundance class
-(ab <- table(unlist(vineyard.df)))
+# (ab <- table(unlist(vineyard.df)))    # <-- prints a table to the console
 # Number of absences
-sum(vineyard.df==0)
+# sum(vineyard.df==0)
 # Proportion of zeros in the community data set
-sum(vineyard.df==0)/(nrow(vineyard.df)*ncol(vineyard.df))
+# sum(vineyard.df==0)/(nrow(vineyard.df)*ncol(vineyard.df))
 
-
-# Create a graphic window with title
-#dev.new(title="Distribution of abundance classes")
-# Barplot of the distribution, all species confounded
-#barplot(ab, las=1, xlab="Abundance class", ylab="Frequency", col=gray(5:0/5))
-# Map of the locations of the sites
-# *********************************
-#alphaList <- c("hoser Locations", "x 	coordinate (km)", "y 	coordinate (km)")
-#colorList <- c("blue", "green", "red")
-#linearFieldLayout(spatial.df$X, spatial.df$Y, alphaList, colorList)
 
 
 # New graphic window (size 9x9 inches)

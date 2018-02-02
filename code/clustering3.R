@@ -25,8 +25,9 @@ source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/da
 vineyard.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
 
 
-
-# Compute correlation matrix in R
+# ****************************************************
+# Compute 'correlation matrix' = 'dissimilarity matrix' in R
+# ****************************************************
 # http://www.sthda.com/english/wiki/correlation-matrix-a-quick-start-guide-to-analyze-format-and-visualize-a-correlation-matrix-using-r-software
 # ****************************************************
 
@@ -37,8 +38,10 @@ vineyard.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1
 #matrix <- subset(matrix, select = -c(environ.var.1, environ.var.2, environ.var.3))
 
 speciesMatrix <- data.matrix(vineyard.df, rownames.force = TRUE)
+
 # pretend that we have data from multiple transects; use only transect "1a"
-speciesMatrix <- subset(speciesMatrix, transect= "1a")
+# speciesMatrix <- subset(speciesMatrix, transect= "1a") <-- does not work
+
 # now, in the other dimension, remove rows representing data in the "margin"
 speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -5,]
 speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -4,]
@@ -47,6 +50,9 @@ speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -2,]
 speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -1,]
 # finally (the fast way)
 speciesMatrix <- subset(speciesMatrix, select = c(aphids, mealybugs, ants, moths))
+
+# instead of correlating by species, correlate by field position
+speciesMatrix <- t(speciesMatrix)
 
 # produce correlations coefficients between the possible pairs of variables 
 # cor(matrix, method = c("pearson", "kendall", "spearman"))
@@ -61,16 +67,18 @@ speciesMatrix <- subset(speciesMatrix, select = c(aphids, mealybugs, ants, moths
 # .... Spearman correlations are the Pearson linear correlations computed on the ranks of 
 # non-missing elements, using midranks for ties.
 library("Hmisc")
+source("/Users/rcphelps/code/githubPublic/transect/libs/matrixTweaking.R")
+source("/Users/rcphelps/code/githubPublic/transect/libs/heatmapGraphics.R")
 
 matrix.list <- rcorr(speciesMatrix, type="spearman")
-coef <- matrix.list$r
+coef <- round(matrix.list$r, 2)
 pvals <- matrix.list$P
-heatmapSpearman <- makeHeatmap(coef, "Spearman")
+heatmapSpearman <- makeHeatmap(coef, "Spearman", addCoefficients=TRUE)
 
 matrix.list <- rcorr(speciesMatrix, type="pearson")
-coef <- matrix.list$r
+coef <- round(matrix.list$r, 2)
 pvals <- matrix.list$P
-heatmapPearson <- makeHeatmap(coef, "Pearson")
+heatmapPearson <- makeHeatmap(coef, "Pearson", addCoefficients=TRUE)
 
 plotText <- makeGgplotTextObject( paste( 
 		".... Spearman correlations are the Pearson\nlinear correlations computed on the ranks of\n", 
