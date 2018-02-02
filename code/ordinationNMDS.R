@@ -77,32 +77,20 @@ nmdsDataSplit <- function(source.url) {
 library(RCurl)
 big.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
 #
-# step 1: read species columns and create separate dataframes
-matrixBig <- data.matrix(big.df, rownames.force = TRUE)
-
-matrixAphids <- subset(matrixBig, select = c(aphids))
-matrixMealybugs <- subset(matrixBig, select = c(mealybugs))
-matrixAnts <- subset(matrixBig, select = c(ants))
-matrixMoths <- subset(matrixBig, select = c(moths))
-
-dfAphids.df <- as.data.frame(matrixAphids)
-dfMealybugs.df <- as.data.frame(matrixMealybugs)
-dfAnts.df <- as.data.frame(matrixAnts)
-dfMoths.df <- as.data.frame(matrixMoths)
-
-dfSpecies.df <- data.frame(dfAphids.df, dfMealybugs.df, dfAnts.df, dfMoths.df)
-
-matrixManagement <- subset(matrixBig, select = c(Management))
-matrixEv2 <- subset(matrixBig, select = c(ev2))
-matrixEv3 <- subset(matrixBig, select = c(ev3))	
+# read species columns and create separate dataframes
 
 library("dplyr")
+dfAphids.df <- select(big.df, Aphids)
+dfMealybugs.df <- select(big.df, Mealybugs) 
+dfAnts.df <- select(big.df, Ants) 
+dfMoths.df <- select(big.df, Moths) 
+dfSpecies.df <- data.frame(dfAphids.df, dfMealybugs.df, dfAnts.df, dfMoths.df)
+
 dfManagement.df <- select(big.df, Management)
-dfEv2.df <- as.data.frame(matrixEv2)
-dfEv3.df <- as.data.frame(matrixEv3)
+dfEv2.df <- select(big.df, Ev2)
+dfEv3.df <- select(big.df, Ev3) 
 
 dfEv.df <- data.frame(dfManagement.df, dfEv2.df, dfEv3.df)
-
 
 return(list(species=dfSpecies.df, env=dfEv.df))
 
@@ -131,7 +119,7 @@ dune.env <- env
 set.seed(201) # this allows us to reproduce the same result in the future
 meta.nmds.dune <- metaMDS(dune) #no transformation of species data is made here prior to bray curtis dissimilarities being calculated. (Bray Curtis is the default in R).
 str(meta.nmds.dune) # gives stress value for plot
-stressplot(meta.nmds.dune) # To gain the stress plot for stress values for your MDS
+stressPlotObject <- stressplot(meta.nmds.dune) # To gain the stress plot for stress values for your MDS
 
 #envfit
 dune.envfit <- envfit(meta.nmds.dune, env = dune.env, perm = 999) #standard envfit
@@ -185,7 +173,9 @@ NMDS.mean=aggregate(dune.NMDS.data[,c("NMDS1", "NMDS2")],
                     list(group = dune.NMDS.data$Management), mean)
  
 
-nmdsGraphics(dune.NMDS.data, "NMDS1", "NMDS2", NMDS.mean, env.scores.dune, df_ell.dune.management)
+ordinationPlotObject <- nmdsGraphics(dune.NMDS.data, "NMDS1", "NMDS2", NMDS.mean, env.scores.dune, df_ell.dune.management)
+
+return(list(Stress=stressPlotObject, Ordination=ordinationPlotObject))
 
 }
 
@@ -202,7 +192,7 @@ require(grid) #this is only required for the envfit arrows. I've spent many a ha
 ## finally plotting. 
 mult <- 2 #multiplier for the arrows and text for envfit below. You can change this and then rerun the plot command.
 
-(dune.nmds.gg1 <- ggplot(data = dune.NMDS.data, aes(y = NMDS2, x = NMDS1))+ #sets up the plot. brackets around the entire thing to make it draw automatically
+dune.nmds.gg1 <- ggplot(data = dune.NMDS.data, aes(y = NMDS2, x = NMDS1))+ #sets up the plot. brackets around the entire thing to make it draw automatically
    geom_path(data = df_ell.dune.management, aes(x = NMDS1, y = NMDS2, group = Management, alpha=Management))+ #this is the ellipse, seperate ones by Site. If you didn't change the "alpha" (the shade) then you need to keep the "group 
    scale_alpha_manual(guide = FALSE,values=c(0.3, 0.5, 0.7, 0.9))+ #sets the shade for the ellipse
    geom_point(aes(shape = Management), size = 3) + #puts the site points in from the ordination, shape determined by site, size refers to size of point
@@ -218,9 +208,9 @@ mult <- 2 #multiplier for the arrows and text for envfit below. You can change t
    #geom_point(data=spps2, alpha = .6, shape = 4)+ #these are the species points, made lighter and a specific shape
    scale_shape_manual(values = c(1,8,19,5))+ #sets the shape of the plot points instead of using whatever ggplot2 automatically provides
    coord_cartesian(xlim = c(-1,1.5))+  ## NB this changes the visible area of the plot only (this is a good thing, apparently). Can also specify ylim. Here in case you want to set xaxis manually.
-   theme_bw())
+   theme_bw()
  
- 
+ return(dune.nmds.gg1)
 # NB I usually use the "pdf" function in rstudio to export the plot. But you can also:
  
 # ggsave(plot = dune.nmds.gg1, filename = "FILENAME.pdf", path = "PATH") #if you don't specify the plot it will save the last one

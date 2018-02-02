@@ -120,11 +120,15 @@ coldiss2(speciesMatrix.db, "\n(Bray-Curtis)", byrank=FALSE, diag=TRUE)
 
 # see ordinationNMDS.R
 # > source("/Users/rcphelps/code/githubPublic/transect/code/ordinationNMDS.R")
+# > source("/Users/rcphelps/code/githubPublic/transect/libs/graphing_functions.R")
 # > source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb.csv")
 df.list <- nmdsDataSplit(source.url)
 
 species <- df.list$species
 env <- df.list$env
 
-nmdsInitialize(species, env)
+plot.list <- nmdsInitialize(species, env)
+
+
+multiplot(plot.list$Stress, plot.list$Ordination, plotlist=NULL, cols=2, layout=NULL)
 
