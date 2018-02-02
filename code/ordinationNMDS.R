@@ -1,24 +1,15 @@
 
-nmdsInitialize <- function(incomingMatrix, dune.env) {
-
-	# convert matrix to 'list' (like 'dune')
-	# 
-	# https://stackoverflow.com/questions/6819804/how-to-convert-a-matrix-to-a-list-of-column-vectors-in-r
-	# new.list <- lapply(seq_len(ncol(speciesMatrix)), function(i) speciesMatrix[[,i]])
-
-	# source.csv <- c("/Users/rcphelps/code/githubPublic/transect/data/vineyard.csv")
-    # vineyard.df <- read.csv(file=source.csv, header=TRUE, row.names=1)
-    # dune.env <- vineyard.df
+nmdsDataSplit <- function(source.url) {
 
 # https://oliviarata.wordpress.com/2014/04/17/ordinations-in-ggplot2/
 
-	# params
-	# list : "dune" (data) , each element is a vector (?), a series of observations for each
-	# species (species = column name)
-	# > class(dune[1])
-	# [1] "data.frame"
-	# > 
+# 'dune' = species (a list of dataframes): observation, count
 
+#> class(dune)
+#[1] "data.frame"
+#> class(dune[1])
+#[1] "data.frame"
+#> 
 	# > dune[1]
     # Achimill
     # 1         1
@@ -42,19 +33,89 @@ nmdsInitialize <- function(incomingMatrix, dune.env) {
     # 19        0
     # 20        0
 
-    # convert matrix to dataframe
-
-dune <- as.data.frame(incomingMatrix)
-
-#data
-data(dune)
-data(dune.env)  # For dune.env, a data frame of 20 observations on the following 5 variables:
+# 
+#     dune.env, a list of data frames of 20 observations on the following 5 variables:
 				# A1 (thickness)
 				# Moisture (ordered factor)
 				# Management (factor with levels)
 				# Use (ordered factor)
 				# Manure (factor with levels)
 				# http://cc.oulu.fi/~jarioksa/softhelp/vegan/html/dune.html
+# 
+# > class(dune.env)
+# [1] "data.frame"
+# > class(dune.env[1])
+# [1] "data.frame"
+# > dune.env[1]
+#      A1
+# 1   2.8
+# 2   3.5
+# 3   4.3
+# 4   4.2
+# 5   6.3
+# 6   4.3
+# 7   2.8
+# 8   4.2
+# 9   3.7
+# 10  3.3
+# 11  3.5
+# 12  5.8
+# 13  6.0
+# 14  9.3
+# 15 11.5
+# 16  5.7
+# 17  4.0
+# 18  4.6
+# 19  3.7
+# 20  3.5
+
+# clean re-build of vineyard.df
+#
+# individual observations contain transect observations which includes 
+# observation, X, Y, species, and environmental data
+#
+big.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
+#
+# step 1: read species columns and create separate dataframes
+matrixBig <- data.matrix(big.df, rownames.force = TRUE)
+
+matrixAphids <- subset(matrixBig, select = c(aphids))
+matrixMealybugs <- subset(matrixBig, select = c(mealybugs))
+matrixAnts <- subset(matrixBig, select = c(ants))
+matrixMoths <- subset(matrixBig, select = c(moths))
+
+dfAphids.df <- as.data.frame(matrixAphids)
+dfMealybugs.df <- as.data.frame(matrixMealybugs)
+dfAnts.df <- as.data.frame(matrixAnts)
+dfMoths.df <- as.data.frame(matrixMoths)
+
+dfSpecies.df <- data.frame(dfAphids.df, dfMealybugs.df, dfAnts.df, dfMoths.df)
+
+matrixEv1 <- subset(matrixBig, select = c(ev1))
+matrixEv2 <- subset(matrixBig, select = c(ev2))
+matrixEv3 <- subset(matrixBig, select = c(ev3))	
+
+dfEv1.df <- as.data.frame(matrixEv1)
+dfEv2.df <- as.data.frame(matrixEv2)
+dfEv3.df <- as.data.frame(matrixEv3)
+
+dfEv.df <- data.frame(dfEv1.df, dfEv2.df, dfEv3.df)
+
+
+return(list(species=df.Species.df, env=dfEv.df))
+
+}
+
+
+
+nmdsInitialize <- function(species, env) {
+
+#data
+#data(dune)
+#data(dune.env)  
+
+dune <- species
+dune.env <- env
  
 #set the seed:
 set.seed(201) # this allows us to reproduce the same result in the future

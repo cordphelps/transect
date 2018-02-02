@@ -1,7 +1,9 @@
 
-# http://www.sthda.com/english/wiki/ggplot2-quick-correlation-matrix-heatmap-r-software-and-data-visualization
+
 
 makeHeatmap <- function (data, type) {
+
+  # http://www.sthda.com/english/wiki/ggplot2-quick-correlation-matrix-heatmap-r-software-and-data-visualization
   
   # Reorder the correlation matrix
   data <- reorder_cor_matrix(data)

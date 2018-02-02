@@ -113,7 +113,16 @@ coldiss2(speciesMatrix.db, "\n(Bray-Curtis)", byrank=FALSE, diag=TRUE)
 # https://oliviarata.wordpress.com/2014/04/17/ordinations-in-ggplot2/
 # ***********************************************************************
 
+
+# oliviarata wants species data and environmental data separated
+#
+
+
 # see ordinationNMDS.R
+# > source("/Users/rcphelps/code/githubPublic/transect/code/ordinationNMDS.R")
+
+df.list <- nmdsDataSplit(source.url)
 
 
+nmdsInitialize <- function(species, env)
 
