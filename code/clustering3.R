@@ -1,10 +1,5 @@
 
 
-
-
-# library(ggplot2)
-# library(grid) # ggplot legend adjustment
-
 # Load the required packages
 # (vegan must be loaded after ade4 to avoid some conflicts)
 library(ade4)
@@ -51,12 +46,11 @@ speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -1,]
 # finally (the fast way)
 speciesMatrix <- subset(speciesMatrix, select = c(aphids, mealybugs, ants, moths, bats))
 
-# instead of correlating by species, correlate by field position
-speciesMatrix <- t(speciesMatrix)
-
 
 heatmapGenerate(speciesMatrix)
-
+# instead of correlating by species, correlate by field position
+speciesMatrix <- t(speciesMatrix)
+heatmapGenerate(speciesMatrix)
 
 
 # ***********************************************************************

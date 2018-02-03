@@ -100,6 +100,8 @@ return(list(species=dfSpecies.df, env=dfEv.df))
 
 nmdsInitialize <- function(species, env) {
 
+# https://oliviarata.wordpress.com/2014/04/17/ordinations-in-ggplot2/
+
 require(vegan)
 require(ggplot2)
 require(grid) #this is only required for the envfit arrows. I've spent many a happy few minutes questioning what on earth the arrowhead error was coming up for when coming back to scripts. Solved by calling grid everytime!
@@ -119,7 +121,12 @@ dune.env <- env
 set.seed(201) # this allows us to reproduce the same result in the future
 meta.nmds.dune <- metaMDS(dune) #no transformation of species data is made here prior to bray curtis dissimilarities being calculated. (Bray Curtis is the default in R).
 str(meta.nmds.dune) # gives stress value for plot
+
 stressPlotObject <- stressplot(meta.nmds.dune) # To gain the stress plot for stress values for your MDS
+# <rcp> |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+# stressplot() returns a dataframe containing (coordinates) $x, $y, and (unknown) $yf
+
+
 
 #envfit
 dune.envfit <- envfit(meta.nmds.dune, env = dune.env, perm = 999) #standard envfit

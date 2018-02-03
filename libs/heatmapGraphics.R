@@ -37,8 +37,8 @@ source("/Users/rcphelps/code/githubPublic/transect/libs/matrixTweaking.R")
 
 
   plotText <- makeGgplotTextObject( paste( 
-    ".... Spearman correlations are the Pearson\nlinear correlations computed on the ranks of\n", 
-    "non-missing elements, using midranks for ties.\n(> ?rcorr)"), rotate=FALSE )
+    "\n\ndissimilarity matrix\n\n.... Spearman correlations are the Pearson\nlinear correlations computed on the ranks of\n", 
+    "non-missing elements, using midranks for ties.\n( R > ?rcorr ) "), rotate=FALSE )
 
   longText <- makeGgplotTextObject(matrixToText(speciesMatrix), rotate=TRUE )
   # ( another approach: https://magesblog.com/post/2015-04-14-plotting-tables-alsongside-charts-in-r/ )
