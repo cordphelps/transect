@@ -49,45 +49,14 @@ speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -3,]
 speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -2,]
 speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -1,]
 # finally (the fast way)
-speciesMatrix <- subset(speciesMatrix, select = c(aphids, mealybugs, ants, moths))
+speciesMatrix <- subset(speciesMatrix, select = c(aphids, mealybugs, ants, moths, bats))
 
 # instead of correlating by species, correlate by field position
 speciesMatrix <- t(speciesMatrix)
 
-# produce correlations coefficients between the possible pairs of variables 
-# cor(matrix, method = c("pearson", "kendall", "spearman"))
-# ?cor
-# ... For cor(), if method is "kendall" or "spearman", Kendall's tau or Spearman's rho 
-# statistic is used to estimate a rank-based measure of association. These are 
-# more robust and have been recommended if the data do not necessarily come from 
-# a bivariate normal distribution.
 
-# Correlation matrix list with significance levels (coefficients matrix plus p-value matrix)
-# > ?rcorr
-# .... Spearman correlations are the Pearson linear correlations computed on the ranks of 
-# non-missing elements, using midranks for ties.
-library("Hmisc")
-source("/Users/rcphelps/code/githubPublic/transect/libs/matrixTweaking.R")
-source("/Users/rcphelps/code/githubPublic/transect/libs/heatmapGraphics.R")
+heatmapGenerate(speciesMatrix)
 
-matrix.list <- rcorr(speciesMatrix, type="spearman")
-coef <- round(matrix.list$r, 2)
-pvals <- matrix.list$P
-heatmapSpearman <- makeHeatmap(coef, "Spearman", addCoefficients=TRUE)
-
-matrix.list <- rcorr(speciesMatrix, type="pearson")
-coef <- round(matrix.list$r, 2)
-pvals <- matrix.list$P
-heatmapPearson <- makeHeatmap(coef, "Pearson", addCoefficients=TRUE)
-
-plotText <- makeGgplotTextObject( paste( 
-		".... Spearman correlations are the Pearson\nlinear correlations computed on the ranks of\n", 
-		"non-missing elements, using midranks for ties.\n(> ?rcorr)"), rotate=FALSE )
-
-longText <- makeGgplotTextObject(matrixToText(speciesMatrix), rotate=TRUE )
-# ( another approach: https://magesblog.com/post/2015-04-14-plotting-tables-alsongside-charts-in-r/ )
-
-multiplot(heatmapSpearman, heatmapPearson, plotText, longText, plotlist=NULL, cols=2, layout=NULL)
 
 
 # ***********************************************************************
