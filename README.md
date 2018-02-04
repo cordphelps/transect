@@ -2,9 +2,7 @@
 
 
 
-### how different are two samples? : examine rank order correlation via non-metric multi-dimensional scaling tools in 
-
-### test drive ggplot() to build the typical NMDS graphics from some imaginary ecological data 
+#### how different are two samples? : examine rank order correlation via non-metric multi-dimensional scaling tools in R then test drive ggplot() to build the typical NMDS graphics from some imaginary ecological data 
 
 ### the data schema : random data with some realistic relationships and a hidden correlation : 
 
@@ -24,8 +22,11 @@
 
 ### the mystery plot:  
 
-### the 'ordination' plot: trying to visualize 
+[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/stressPlot.jpg)]()
 
+### the 'ordination' plot: trying to visualize the magnitude of difference in multi-dimensional space
+
+[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/ordination.jpg)]()
 
 ####
 read data with R:
