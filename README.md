@@ -31,7 +31,7 @@
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/stressPlot.jpg)]()
 
 ---
-### the 'ordination' plot: trying to visualize the magnitude of difference in multi-dimensional space
+### the 'ordination' plot: trying to visualize the magnitude of difference in multi-dimensional space (if the ellipses appear parallel then the distributions of those factor observations are 'similar' (?) )
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/ordination.jpg)]()
 
