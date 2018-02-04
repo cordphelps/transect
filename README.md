@@ -3,6 +3,13 @@
 
 
 #
+
+[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/hbvSchema.jpg)]()
+
+
+[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/quad.jpg)]()
+
+#
 read data with R:
 
 ```R
@@ -10,9 +17,6 @@ read data with R:
 	> source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb.csv")
 	> dataframe.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
 ```
-
-
-[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/quad.jpg)]()
 
 
 ### License
