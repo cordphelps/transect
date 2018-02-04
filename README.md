@@ -2,9 +2,11 @@
 
 
 
-## how different are two samples? : examine rank order correlation via non-metric multi-dimensional scaling tools in R
+### how different are two samples? : examine rank order correlation via non-metric multi-dimensional scaling tools in 
 
 ### test drive ggplot() to build the typical NMDS graphics from some imaginary ecological data 
+
+### the data schema : random data with some realistic relationships and a hidden correlation : 
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/hvbSchema.jpg)]()
 
@@ -14,8 +16,11 @@
 
 ### the typical dissimilarity plots; by species 
 
+[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/dissimSpecies.jpg)]()
 
 ### and dissimilarity by transect position
+
+[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/dissimObs.jpg)]()
 
 ### the mystery plot:  
 
