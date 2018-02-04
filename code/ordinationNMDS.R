@@ -80,15 +80,15 @@ big.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
 # read species columns and create separate dataframes
 
 library("dplyr")
-dfAphids.df <- select(big.df, Aphids)
-dfMealybugs.df <- select(big.df, Mealybugs) 
-dfAnts.df <- select(big.df, Ants) 
-dfMoths.df <- select(big.df, Moths) 
+dfAphids.df <- select(big.df, aphids)
+dfMealybugs.df <- select(big.df, mealybugs) 
+dfAnts.df <- select(big.df, ants) 
+dfMoths.df <- select(big.df, moths) 
 dfSpecies.df <- data.frame(dfAphids.df, dfMealybugs.df, dfAnts.df, dfMoths.df)
 
 dfManagement.df <- select(big.df, Management)
-dfEv2.df <- select(big.df, Ev2)
-dfEv3.df <- select(big.df, Ev3) 
+dfEv2.df <- select(big.df, ev2)
+dfEv3.df <- select(big.df, ev3) 
 
 dfEv.df <- data.frame(dfManagement.df, dfEv2.df, dfEv3.df)
 

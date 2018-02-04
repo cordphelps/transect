@@ -306,3 +306,70 @@ reorder_cor_matrix <- function(data){
   hc <- hclust(dd)
   return(data[hc$order, hc$order])
 }
+
+checkSpeciesMatrix <- function(source.url) {
+
+  library(RCurl)
+  vineyard.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
+
+  # TODO: generalize this function to accept more variation
+  #
+  # right now, columns of aphids, mealybugs, ants, moths, bats are expected
+  # plus a column of 'Management' factors
+  #
+
+  #matrix <- data.matrix(vineyard.df, rownames.force = TRUE)
+  # the slow way
+  #matrix <- subset(matrix, select = -c(transect, X, Y, elevation.change, fall.line.exposure))
+  #matrix <- subset(matrix, select = -c(max.aphids, max.mealybugs, max.ants...mealybug, max.moths))
+  #matrix <- subset(matrix, select = -c(environ.var.1, environ.var.2, environ.var.3))
+
+  speciesMatrix <- data.matrix(vineyard.df, rownames.force = TRUE)
+
+  # pretend that we have data from multiple transects; use only transect "1a"
+  # speciesMatrix <- subset(speciesMatrix, transect= "1a") <-- does not work
+
+  # now, in the other dimension, remove rows representing data in the "margin"
+  speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -5,]
+  speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -4,]
+  speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -3,]
+  speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -2,]
+  speciesMatrix <- speciesMatrix[speciesMatrix[,2] != -1,]
+  # finally (the fast way)
+  speciesMatrix <- subset(speciesMatrix, select = c(aphids, mealybugs, ants, moths, bats))
+
+  # species matrix sanity check
+  # for now, require that max 'observations' < 30 (a reasonable number for a sample)
+  # but > 4 (function rcorr() requires > 4 observations to make heatmap )
+
+
+
+
+  return()
+
+  # ///////////////// for reference below \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  # ***********************************************************************
+  # dissimilarity, ordination, ....
+  # http://ordination.okstate.edu/overview.htm
+  # ***********************************************************************
+
+  # ***********************************************************************
+  # Q-mode dissimilarity and distance measures for (semi-)quantitative data
+  # Numerical Ecology with R : chapter 3
+  # ***********************************************************************
+  # The concept of Dissimilarity may be used in a more general way, to determine the pairwise 
+  # difference between samples. The similarity notion is a key concept for Clustering, in the 
+  # way to decide which clusters should be combined or divided when observing sets.
+  # https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/Dissimilarity_Matrix_Calculation
+  # ***********************************************************************
+
+  # Percentage difference (Bray-Curtis) dissimilarity matrix
+  # on raw species data
+  #speciesMatrix.db <- vegdist(speciesMatrix)  # method="bray" (default)
+  #head(speciesMatrix.db)
+  # Percentage difference (Bray-Curtis) dissimilarity matrix on raw species abundance data
+  # ///////////////// this works \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  #dev.new(title="Percentage difference (Bray-Curtis), raw data", width=10, height=5)
+  #coldiss2(speciesMatrix.db, "\n(Bray-Curtis)", byrank=FALSE, diag=TRUE)
+
+}
