@@ -345,7 +345,7 @@ checkSpeciesMatrix <- function(source.url) {
 
 
 
-  return()
+  return(speciesMatrix)
 
   # ///////////////// for reference below \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   # ***********************************************************************
