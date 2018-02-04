@@ -20,7 +20,7 @@
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/dissimObs.jpg)]()
 
-### the mystery plot:  
+### the mystery plot ():  
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/stressPlot.jpg)]()
 
@@ -37,6 +37,8 @@ read data with R:
 	> dataframe.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
 ```
 
+### Acknowledgements
+[oliviarata.wordpress.com](https://oliviarata.wordpress.com/2014/04/17/ordinations-in-ggplot2/)
 
 ### License
 [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)
