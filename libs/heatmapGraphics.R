@@ -43,7 +43,7 @@ source("/Users/rcphelps/code/githubPublic/transect/libs/matrixTweaking.R")
   longText <- makeGgplotTextObject(matrixToText(speciesMatrix), rotate=TRUE )
   # ( another approach: https://magesblog.com/post/2015-04-14-plotting-tables-alsongside-charts-in-r/ )
 
-  multiplot(heatmapSpearman, heatmapPearson, plotText, longText, plotlist=NULL, cols=2, layout=NULL)
+  multiplot(heatmapSpearman, plotText, heatmapPearson, longText, plotlist=NULL, cols=2, layout=NULL)
 
 
 }
@@ -82,12 +82,12 @@ makeHeatmap <- function (data, type, addCoefficients) {
       panel.border = element_blank(),
       panel.background = element_blank(),
       axis.ticks = element_blank(),
-      legend.justification = c(1, 0),
-      legend.position = c(0.6, 0.7),
+      #legend.justification = c(1, 0),
+      legend.position = "none",
       # legend.position = c(0.6, 0.7),
-      legend.background = element_rect(fill = 'gray93', colour = 'black'),
+      #legend.background = element_rect(fill = 'gray93', colour = 'black'),
       legend.title = element_blank(),
-      legend.box = "horizontal",
+      #legend.box = "horizontal",
       legend.direction = "horizontal") +
       
       guides(fill = guide_colorbar(barwidth = 7, barheight = 1,
@@ -118,12 +118,13 @@ makeHeatmap <- function (data, type, addCoefficients) {
         panel.border = element_blank(),
         panel.background = element_blank(),
         axis.ticks = element_blank(),
-        legend.justification = c(1, 0),
-        legend.position = c(0.6, 0.7),
+        #legend.justification = c(1, 0),
+        legend.position = "none",
         # legend.position = c(0.6, 0.7),
-        legend.background = element_rect(fill = 'gray93', colour = 'black'),
+        #legend.background = element_rect(fill = 'gray93', colour = 'black'),
+
         legend.title = element_blank(),
-        legend.box = "horizontal",
+        #legend.box = "horizontal",
         legend.direction = "horizontal") +
       
         guides(fill = guide_colorbar(barwidth = 7, barheight = 1,
