@@ -4,7 +4,7 @@
 
 #
 
-[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/hbvSchema.jpg)]()
+[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/hvbSchema.jpg)]()
 
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/quad.jpg)]()
