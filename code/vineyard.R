@@ -5,7 +5,7 @@
 library(ggplot2)
 library(grid) # ggplot legend adjustment
 
-source("/Users/rcphelps/code/githubPublic/transect/code/graphing_functions.R")
+source("/Users/rcphelps/code/githubPublic/transect/libs/graphing_functions.R")
 
 library(RCurl)
 source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb.csv")
@@ -25,7 +25,9 @@ spatial.df <- read.csv(text=getURLContent(source.url), header=TRUE)
 # Proportion of zeros in the community data set
 # sum(vineyard.df==0)/(nrow(vineyard.df)*ncol(vineyard.df))
 
-
+source("/Users/rcphelps/code/githubPublic/transect/libs/graphing_functions.R")
+bugListDataPoints <- list(vineyard.df$Y, vineyard.df$aphids, vineyard.df$mealybugs, vineyard.df$ants, vineyard.df$moths)
+bugGGfromList(vineyard.df, bugListDataPoints, title="hoser")
 
 # New graphic window (size 9x9 inches)
 #dev.new(title="Species Locations", width=9, height=9)

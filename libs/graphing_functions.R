@@ -35,12 +35,44 @@ bugGG <- function (df, x, y, dataPoints, title, legend) {
     annotate("rect", xmin=0, xmax=15, ymin=0,ymax=10, alpha=0.2, fill="green") +
     scale_y_continuous(breaks = seq(1, 10, 2)) +
     ggtitle(title) +
-    labs(x = "border offset", y = "transect") +
+    labs(x = "field margin offset", y = "transect") +
     theme_bw() +
     theme() + 
     # theme(legend.position = "bottom", legend.direction = "horizontal") +
     theme(legend.position = "none", legend.direction = "horizontal") +
     theme(legend.box = "horizontal", legend.key.size = unit(1, "cm")) 
+  
+  return(ggplotObject)
+}
+
+bugGGfromList <- function (df, bugListdataPoints, title) {
+  
+  # http://t-redactyl.io/blog/2016/02/creating-plots-in-r-using-ggplot2-part-6-weighted-scatterplots.html
+  ggplotObject <- ggplot() +   # 'size' is the name of the variable to plot
+    geom_point(data=df, aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[3]], 
+      shape=21, colour = "purple", fill = "plum", alpha=0.6) +  # shape 21 is a circle with outline and fill colors
+    geom_point(data=df, aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[4]], 
+      shape=21, colour = "purple", fill = "green", alpha=0.6) +
+    geom_point(data=df, aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[5]], 
+      shape=21, colour = "purple", fill = "red", alpha=0.6) +
+    geom_point(data=df, aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[6]], 
+      shape=21, colour = "purple", fill = "blue", alpha=0.6) +
+    #scale_size_area(max_size = 20) +
+    # geom_count() probably more appropriate http://ggplot2.tidyverse.org/reference/scale_size.html
+    scale_size(range = c(1, 10)) +
+    scale_fill_continuous(low = "plum1", high = "purple4") +
+    scale_y_continuous(breaks = seq(1, 10, 2)) +
+
+    annotate("rect", xmin=-5, xmax=0, ymin=0,ymax=10, alpha=0.2, fill="red") +
+    annotate("rect", xmin=0, xmax=15, ymin=0,ymax=10, alpha=0.2, fill="green") +
+
+    ggtitle(title) +
+
+    labs(x = "field margin offset", y = "transect") +
+
+    theme_bw() +
+    theme(legend.justification=c(0,0), legend.position=c(0,1)) # Position legend in graph, where x,y is 0,0 (bottom left) to 1,1 (top right)
+    #theme(legend.position = c(0, 7)) 
   
   return(ggplotObject)
 }

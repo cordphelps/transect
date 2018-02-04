@@ -2,7 +2,7 @@
 
 
 
-## how different are two samples? : examine rank order correlation via non-metric multi-dimensional scaling tools in R then test drive ggplot() to build the typical NMDS graphics from some imaginary ecological data 
+## how different are two multi-species transect samples? : examine rank order correlation via non-metric multi-dimensional scaling tools in R then test drive ggplot() to build the typical NMDS graphics from some imaginary ecological data 
 
 ---
 
@@ -16,12 +16,12 @@
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/quad.jpg)]()
 
 ---
-### the typical dissimilarity plots; by species 
+### the typical dissimilarity plots; by species (suggesting which species distributions are most similar/dissimilar)
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/dissimSpecies.jpg)]()
 
 ---
-### and dissimilarity by transect position
+### and dissimilarity by transect position (suggesting which transect position distributions are most similar/dissimilar)
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/dissimObs.jpg)]()
 
@@ -36,6 +36,9 @@
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/ordination.jpg)]()
 
 ---
+### but wait! back to the original question: 'how different are two multi-species transect samples?'
+
+---
 ####
 read data with R:
 
@@ -48,6 +51,7 @@ read data with R:
 ---
 ### Acknowledgements
 [oliviarata.wordpress.com](https://oliviarata.wordpress.com/2014/04/17/ordinations-in-ggplot2/)
+
 
 ### License
 [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)
