@@ -49,14 +49,36 @@ bugGGfromList <- function (df, bugListdataPoints, title) {
   
   # http://t-redactyl.io/blog/2016/02/creating-plots-in-r-using-ggplot2-part-6-weighted-scatterplots.html
   ggplotObject <- ggplot() +   # 'size' is the name of the variable to plot
-    geom_point(data=df, aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[3]], 
+
+    geom_point(data=df[1], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[3]], 
       shape=21, colour = "purple", fill = "plum", alpha=0.6) +  # shape 21 is a circle with outline and fill colors
-    geom_point(data=df, aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[4]], 
+    geom_point(data=df[1], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[4]], 
       shape=21, colour = "purple", fill = "green", alpha=0.6) +
-    geom_point(data=df, aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[5]], 
+    geom_point(data=df[1], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[5]], 
       shape=21, colour = "purple", fill = "red", alpha=0.6) +
-    geom_point(data=df, aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[6]], 
+    geom_point(data=df[1], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[6]], 
       shape=21, colour = "purple", fill = "blue", alpha=0.6) +
+
+    geom_point(data=df[2], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[3]], 
+      shape=21, colour = "purple", fill = "plum", alpha=0.6) +  # shape 21 is a circle with outline and fill colors
+    geom_point(data=df[2], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[4]], 
+      shape=21, colour = "purple", fill = "green", alpha=0.6) +
+    geom_point(data=df[2], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[5]], 
+      shape=21, colour = "purple", fill = "red", alpha=0.6) +
+    geom_point(data=df[2], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[6]], 
+      shape=21, colour = "purple", fill = "blue", alpha=0.6) +
+
+    geom_point(data=df[3], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[3]], 
+      shape=21, colour = "purple", fill = "plum", alpha=0.6) +  # shape 21 is a circle with outline and fill colors
+    geom_point(data=df[3], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[4]], 
+      shape=21, colour = "purple", fill = "green", alpha=0.6) +
+    geom_point(data=df[3], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[5]], 
+      shape=21, colour = "purple", fill = "red", alpha=0.6) +
+    geom_point(data=df[3], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[6]], 
+      shape=21, colour = "purple", fill = "blue", alpha=0.6) +
+
+
+
     #scale_size_area(max_size = 20) +
     # geom_count() probably more appropriate http://ggplot2.tidyverse.org/reference/scale_size.html
     scale_size(range = c(1, 10)) +

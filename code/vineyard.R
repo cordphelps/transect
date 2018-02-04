@@ -8,9 +8,9 @@ library(grid) # ggplot legend adjustment
 source("/Users/rcphelps/code/githubPublic/transect/libs/graphing_functions.R")
 
 library(RCurl)
-source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb.csv")
-vineyard.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
-spatial.df <- read.csv(text=getURLContent(source.url), header=TRUE)
+#source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb.csv")
+#vineyard.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
+#spatial.df <- read.csv(text=getURLContent(source.url), header=TRUE)
 
 
 # Overall distribution of abundances (dominance codes)
@@ -26,8 +26,21 @@ spatial.df <- read.csv(text=getURLContent(source.url), header=TRUE)
 # sum(vineyard.df==0)/(nrow(vineyard.df)*ncol(vineyard.df))
 
 source("/Users/rcphelps/code/githubPublic/transect/libs/graphing_functions.R")
-bugListDataPoints <- list(vineyard.df$Y, vineyard.df$aphids, vineyard.df$mealybugs, vineyard.df$ants, vineyard.df$moths)
-bugGGfromList(vineyard.df, bugListDataPoints, title="hoser")
+bugListDataPoints <- list(vineyard.df$X, vineyard.df$Y, vineyard.df$aphids, vineyard.df$mealybugs, vineyard.df$ants, vineyard.df$moths, vineyard.df$bats)
+
+source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb2.csv")
+vineyard2.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
+source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb5.csv")
+vineyard5.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
+source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb8.csv")
+vineyard8.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
+
+vineyardList <- list(vineyard2.df, vineyard5.df, vineyard8.df)
+
+
+#bugGGfromList(vineyard.df, bugListDataPoints, title="hoser")
+bugGGfromList(vineyardList, bugListDataPoints, title="hoser")
+
 
 # New graphic window (size 9x9 inches)
 #dev.new(title="Species Locations", width=9, height=9)
