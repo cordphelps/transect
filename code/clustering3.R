@@ -30,12 +30,12 @@ source("/Users/rcphelps/code/githubPublic/transect/libs/numericalEcologyWithR/pa
 # ****************************************************
 
 
-source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb.csv")
+source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb5.csv")
 
-result <- checkSpeciesMatrix(source.url)
+speciesMatrix <- checkSpeciesMatrix(source.url)
 
-vineyard.df <- result$vineyard.df
-speciesMatrix <- result$speciesMatrix
+#vineyard.df <- result$vineyard.df
+#speciesMatrix <- result$speciesMatrix
 
 heatmapGenerate(speciesMatrix)
 # instead of correlating by species, correlate by field position
