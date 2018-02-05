@@ -26,21 +26,20 @@ library(RCurl)
 
 source("/Users/rcphelps/code/githubPublic/transect/libs/graphing_functions.R")
 
-source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb2.csv")
-vineyard2.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
+
 #bugList2 <- data.frame(vineyard2.df$X, vineyard2.df$Y, vineyard2.df$aphids, vineyard2.df$mealybugs, vineyard2.df$ants, vineyard2.df$moths, vineyard2.df$bats)
 
-#source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb5.csv")
-#vineyard5.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
-
+source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb5.csv")
+vineyard5.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
+source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb2.csv")
+vineyard2.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
 source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb8.csv")
 vineyard8.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
 
-vineyardDfList <- list(vineyard2.df, vineyard5.df, vineyard8.df)
 
-
-#bugGGfromList(vineyard.df, bugListDataPoints, title="hoser")
-ggPlotObject <- bugGGfromList(vineyard2.df, vineyard5.df, vineyard8.df, title="hoser")
+# unable to pass a list of dataframes for some reason (prehaps due to the fact that
+# the original df were of unequal length..... now they are the same....)
+ggPlotObject <- bugGGfromList(vineyard2.df, vineyard5.df, vineyard8.df, title="transect comparison")
 multiplot(ggPlotObject, plotlist=NULL, cols=2, layout=NULL)
 
 stop()
