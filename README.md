@@ -53,7 +53,7 @@ read data with R:
 
 ```R
 	> library(RCurl)
-	> source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb.csv")
+	> source.url <- c("https://raw.githubusercontent.com/cordphelps/transect/master/data/hvb5.csv")
 	> dataframe.df <- read.csv(text=getURLContent(source.url), header=TRUE, row.names=1)
 ```
 ---
