@@ -38,6 +38,7 @@
 ---
 ### but wait! back to the original question: 'how different are two multi-species transect samples?'
 
+[![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/transectCompare.jpg)]()
 ---
 ####
 read data with R:
