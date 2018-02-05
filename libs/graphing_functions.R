@@ -45,37 +45,53 @@ bugGG <- function (df, x, y, dataPoints, title, legend) {
   return(ggplotObject)
 }
 
-bugGGfromList <- function (df, bugListdataPoints, title) {
+bugGGfromList <- function (df1, df2, title) {
+
+  dataframe1.df <- df1
+  dataframe2.df <- df2
+  #dataframe3.df <- df3
+
+  #print(dfAphids2.df)
+  #print("stopping")
+  #stop()
+
   
   # http://t-redactyl.io/blog/2016/02/creating-plots-in-r-using-ggplot2-part-6-weighted-scatterplots.html
   ggplotObject <- ggplot() +   # 'size' is the name of the variable to plot
 
-    geom_point(data=df[1], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[3]], 
-      shape=21, colour = "purple", fill = "plum", alpha=0.6) +  # shape 21 is a circle with outline and fill colors
-    geom_point(data=df[1], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[4]], 
-      shape=21, colour = "purple", fill = "green", alpha=0.6) +
-    geom_point(data=df[1], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[5]], 
-      shape=21, colour = "purple", fill = "red", alpha=0.6) +
-    geom_point(data=df[1], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[6]], 
-      shape=21, colour = "purple", fill = "blue", alpha=0.6) +
+    geom_point(data=dataframe1.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$aphids, 
+      shape=21, colour = "purple", fill = "plum", alpha=0.6)) +  # shape 21 is a circle with outline and fill colors
+    geom_point(data=dataframe1.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$mealybugs, 
+      shape=21, colour = "purple", fill = "green", alpha=0.6)) +
+    geom_point(data=dataframe1.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$ants, 
+      shape=21, colour = "purple", fill = "red", alpha=0.6)) +
+    geom_point(data=dataframe1.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$moths, 
+      shape=21, colour = "purple", fill = "blue", alpha=0.6)) +
+    geom_point(data=dataframe1.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$bats, 
+      shape=21, colour = "purple", fill = "blue", alpha=0.6)) +
+    
 
-    geom_point(data=df[2], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[3]], 
-      shape=21, colour = "purple", fill = "plum", alpha=0.6) +  # shape 21 is a circle with outline and fill colors
-    geom_point(data=df[2], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[4]], 
-      shape=21, colour = "purple", fill = "green", alpha=0.6) +
-    geom_point(data=df[2], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[5]], 
-      shape=21, colour = "purple", fill = "red", alpha=0.6) +
-    geom_point(data=df[2], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[6]], 
-      shape=21, colour = "purple", fill = "blue", alpha=0.6) +
+    #geom_point(data=dataframe2.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$aphids, 
+      #shape=21, colour = "purple", fill = "plum", alpha=0.6)) +  
+    #geom_point(data=dataframe2.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$mealybugs, 
+      #shape=21, colour = "purple", fill = "green", alpha=0.6)) +
+    #geom_point(data=dataframe2.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$ants, 
+      #shape=21, colour = "purple", fill = "red", alpha=0.6)) +
+    #geom_point(data=dataframe2.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$moths, 
+      #shape=21, colour = "purple", fill = "blue", alpha=0.6)) +
+    #geom_point(data=dataframe2.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$bats, 
+      #shape=21, colour = "purple", fill = "blue", alpha=0.6)) +
 
-    geom_point(data=df[3], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[3]], 
-      shape=21, colour = "purple", fill = "plum", alpha=0.6) +  # shape 21 is a circle with outline and fill colors
-    geom_point(data=df[3], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[4]], 
-      shape=21, colour = "purple", fill = "green", alpha=0.6) +
-    geom_point(data=df[3], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[5]], 
-      shape=21, colour = "purple", fill = "red", alpha=0.6) +
-    geom_point(data=df[3], aes(x=bugListDataPoints[[1]], y=bugListDataPoints[[2]]), size=bugListDataPoints[[6]], 
-      shape=21, colour = "purple", fill = "blue", alpha=0.6) +
+    #geom_point(data=dataframe3.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$aphids, 
+      #shape=21, colour = "purple", fill = "plum", alpha=0.6)) +  
+    #geom_point(data=dataframe3.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$mealybugs, 
+      #shape=21, colour = "purple", fill = "green", alpha=0.6)) +
+    #geom_point(data=dataframe3.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$ants, 
+      #shape=21, colour = "purple", fill = "red", alpha=0.6)) +
+    #geom_point(data=dataframe3.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$moths, 
+      #shape=21, colour = "purple", fill = "blue", alpha=0.6)) +
+    #geom_point(data=dataframe3.df, aes(x=dataframe1.df$X, y=dataframe1.df$Y, size=dataframe1.df$bats, 
+      #shape=21, colour = "purple", fill = "blue", alpha=0.6)) +
 
 
 
@@ -93,7 +109,8 @@ bugGGfromList <- function (df, bugListdataPoints, title) {
     labs(x = "field margin offset", y = "transect") +
 
     theme_bw() +
-    theme(legend.justification=c(0,0), legend.position=c(0,1)) # Position legend in graph, where x,y is 0,0 (bottom left) to 1,1 (top right)
+    theme(legend.justification=c(0,0), legend.position=c(0,1)) 
+    # Position legend in graph, where x,y is 0,0 (bottom left) to 1,1 (top right)
     #theme(legend.position = c(0, 7)) 
   
   return(ggplotObject)
