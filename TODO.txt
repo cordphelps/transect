@@ -1,0 +1,9 @@
+TODO:
+
+1) to sit in the same ggplot() graph, dataframes apparently have to have the same number of observations.
+find a way to accomodate dataframes of varying numbers of observations
+
+2) similarity plot; no correlation values if observations > 18
+
+3) resolve the stressplot() annoyance
+

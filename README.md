@@ -2,7 +2,11 @@
 
 
 
-## how different are several multi-species transect samples? : examine rank order correlation via non-metric multi-dimensional scaling tools in R then test drive ggplot() to build the typical NMDS graphics from some imaginary ecological data 
+## how different are several multi-species transect samples? with some imaginary ecological data :
+- demonstrate rank order correlations in two dimensions
+- experiment with stressplot() 
+- build typical NMDS (non-metric multi-dimensional scaling) graphics to demo clustering by factor 
+- demo a distribution plot for multiple datasets
 
 ---
 
@@ -11,27 +15,29 @@
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/hvbSchema.jpg)]()
 
 --- 
-### the "random" ecological data: species ocurrances distributed along a transect that begins in the field margin and extends into the field 
+### the 'random' ecological data: species ocurrances distributed along a transect that begins in the field margin and extends into the field 
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/quad.jpg)]()
 
 ---
-### the typical dissimilarity plots; by species (suggesting which species distributions are most similar/dissimilar)
+### the typical dissimilarity plots; by species (suggesting which species distributions occuring in a transect are most similar/dissimilar)
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/dissimSpecies.jpg)]()
 
 ---
-### and dissimilarity by transect position (suggesting which transect position distributions are most similar/dissimilar)
+### and dissimilarity by transect position (suggesting which transect distributions, by gradient, of all species are most similar/dissimilar)
+#### TODO: normalize the counts of individual species
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/dissimObs.jpg)]()
 
 ---
-### the mystery plot ():  
+### the mystery stressplot():  
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/stressPlot.jpg)]()
 
 ---
-### the 'ordination' plot: trying to visualize the magnitude of difference in multi-dimensional space (if the ellipses appear parallel then the distributions of those factor observations are 'similar' (?) )
+### the 'ordination' plot: trying to visualize the magnitude of distribution variation in multi-dimensional space as a 
+function of some factor. (if the ellipses appear parallel then the distributions of those factor observations are 'similar' (?) )
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/ordination.jpg)]()
 
