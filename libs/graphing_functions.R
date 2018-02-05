@@ -32,7 +32,7 @@ bugGG <- function (df, x, y, dataPoints, title, legend) {
     scale_size(range = c(1, 10)) +
     scale_fill_continuous(low = "plum1", high = "purple4") +
     annotate("rect", xmin=-5, xmax=0, ymin=0,ymax=10, alpha=0.2, fill="red") +
-    annotate("rect", xmin=0, xmax=15, ymin=0,ymax=10, alpha=0.2, fill="green") +
+    #annotate("rect", xmin=0, xmax=15, ymin=0,ymax=10, alpha=0.2, fill="green") +
     scale_y_continuous(breaks = seq(1, 10, 2)) +
     ggtitle(title) +
     labs(x = "field margin offset", y = "transect") +
