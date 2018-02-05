@@ -2,7 +2,7 @@
 
 
 
-## how different are two multi-species transect samples? : examine rank order correlation via non-metric multi-dimensional scaling tools in R then test drive ggplot() to build the typical NMDS graphics from some imaginary ecological data 
+## how different are several multi-species transect samples? : examine rank order correlation via non-metric multi-dimensional scaling tools in R then test drive ggplot() to build the typical NMDS graphics from some imaginary ecological data 
 
 ---
 
@@ -36,9 +36,10 @@
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/ordination.jpg)]()
 
 ---
-### but wait! back to the original question: 'how different are two multi-species transect samples?'
+### comparing multi-species transect samples
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/transectCompare.jpg)]()
+
 ---
 ####
 read data with R:
