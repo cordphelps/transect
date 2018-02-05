@@ -3,10 +3,12 @@
 
 
 ## how different are several multi-species transect samples? with some imaginary ecological data :
-- demonstrate rank order correlations in two dimensions
+- demonstrate rank order correlations in two dimensions (dissimilarity plots)
 - experiment with stressplot() 
 - build typical NMDS (non-metric multi-dimensional scaling) graphics to demo clustering by factor 
 - demo a distribution plot for multiple datasets
+
+
 
 ---
 
@@ -36,8 +38,7 @@
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/stressPlot.jpg)]()
 
 ---
-### the 'ordination' plot: trying to visualize the magnitude of distribution variation in multi-dimensional space as a 
-function of some factor. (if the ellipses appear parallel then the distributions of those factor observations are 'similar' (?) )
+### the 'ordination' plot: trying to visualize the magnitude of distribution variation in multi-dimensional space as a function of some factor. (if the ellipses appear parallel then the distributions of those factor observations are 'similar' (?) )
 
 [![screen shot](https://raw.githubusercontent.com/cordphelps/transect/master/images/ordination.jpg)]()
 
