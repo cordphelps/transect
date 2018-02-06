@@ -34,6 +34,7 @@ shannonData <- diversity(normalized)
 xy <- subset(v5.orig.df, select = c(X, Y))
 shannon.df <- cbind(xy, shannonData)   # that is the shannon biodiversity index with plottable coordinates for the transect
 
+
 #######################################################################
 # plot
 #######################################################################
@@ -59,3 +60,42 @@ ggplotObject <- ggplot()  +
     theme(legend.position = "none", legend.direction = "horizontal") +
     theme(legend.box = "horizontal", legend.key.size = unit(1, "cm")) 
   
+
+#######################################################################
+# fourier transform
+#######################################################################
+# http://www.di.fc.ul.pt/~jpn/r/fourier/fourier.html
+
+  library(stats)
+  mat<-as.matrix(shannon.df, dimnames=NA)
+  X.k <- fft(mat)
+  
+  X.k<-subset(X.k, select=-c(X,Y))
+
+  plot.frequency.spectrum(X.k, xlimits=c(0,20))
+
+
+
+ plot.frequency.spectrum <- function(X.k, xlimits=c(0,length(X.k))) {
+# http://www.di.fc.ul.pt/~jpn/r/fourier/fourier.html
+  plot.data  <- cbind(0:(length(X.k)-1), Mod(X.k))
+
+  # TODO: why this scaling is necessary?
+  plot.data[2:length(X.k),2] <- 2*plot.data[2:length(X.k),2] 
+  
+  plot(plot.data, t="h", lwd=2, main="", 
+       xlab="Frequency (Hz)", ylab="Strength", 
+       xlim=xlimits, ylim=c(0,max(Mod(plot.data[,2]))))
+}
+
+  plot.data  <- cbind(0:(length(X.k)-1), Mod(X.k))
+
+  # TODO: why this scaling is necessary?
+  plot.data[2:length(X.k),2] <- 2*plot.data[2:length(X.k),2] 
+  
+  plot(plot.data, t="h", lwd=2, main="", 
+       xlab="Frequency (Hz)", ylab="Strength", 
+       xlim=xlimits, ylim=c(0,max(Mod(plot.data[,2]))))
+}
+
+
