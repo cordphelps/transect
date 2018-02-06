@@ -69,7 +69,8 @@ ggplotObject <- ggplot()  +
   library(stats)
   mat<-as.matrix(shannon.df, dimnames=NA)
   X.k <- fft(mat)
-  
+
+  # chop off the x and y dimensions leaving the shannon "signal"
   X.k<-subset(X.k, select=-c(X,Y))
 
   plot.frequency.spectrum(X.k, xlimits=c(0,20))
